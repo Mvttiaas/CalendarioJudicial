@@ -1,0 +1,234 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Calendario Judicial - Gestión de Plazos Legales{% endblock %}
+
+{% block content %}
+<div class="container-fluid px-0">
+    <!-- Hero Section -->
+    <div class="hero-section bg-primary text-white py-3">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-8">
+                    <h1 class="display-5 fw-bold mb-3">
+                        <i class="bi bi-calendar-check me-2"></i>
+                        Calendario Judicial
+                    </h1>
+                    <p class="lead mb-3 text-break">
+                        La herramienta definitiva para abogados y asistentes jurídicos en Chile. 
+                        Calcula automáticamente plazos judiciales y gestiona fechas de vencimiento.
+                    </p>
+                    <div class="d-flex gap-2 flex-wrap">
+                        <a href="/usuarios/registro/" class="btn btn-light btn-lg">
+                            <i class="bi bi-person-plus me-2"></i>
+                            Crear Cuenta
+                        </a>
+                        <a href="/usuarios/login/" class="btn btn-outline-light btn-lg">
+                            <i class="bi bi-box-arrow-in-right me-2"></i>
+                            Iniciar Sesión
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-4 text-center">
+                    <div class="hero-image">
+                        <i class="bi bi-shield-check display-4 text-warning mb-2"></i>
+                        <div class="bg-white bg-opacity-10 rounded p-3">
+                            <h6 class="mb-2">Características</h6>
+                            <div class="row text-start small">
+                                <div class="col-6">
+                                    <p class="mb-1"><i class="bi bi-check me-1"></i>Cálculo automático</p>
+                                    <p class="mb-1"><i class="bi bi-check me-1"></i>Días hábiles</p>
+                                </div>
+                                <div class="col-6">
+                                    <p class="mb-1"><i class="bi bi-check me-1"></i>Feriados chilenos</p>
+                                    <p class="mb-1"><i class="bi bi-check me-1"></i>Exportación PDF</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Features Section -->
+    <div class="py-4">
+        <div class="container">
+            <div class="row text-center mb-4">
+                <div class="col-12">
+                    <h2 class="h2 fw-bold mb-3">¿Por qué elegir nuestro sistema?</h2>
+                    <p class="text-muted text-break">
+                        Diseñado específicamente para el sistema judicial chileno
+                    </p>
+                </div>
+            </div>
+            
+            <div class="row g-3">
+                <div class="col-md-4">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body text-center p-3">
+                            <div class="bg-primary bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-2" style="width: 60px; height: 60px;">
+                                <i class="bi bi-calculator text-primary fs-4"></i>
+                            </div>
+                            <h6 class="card-title">Cálculo Automático</h6>
+                            <p class="card-text text-muted small text-break">
+                                Calcula automáticamente fechas de vencimiento considerando días hábiles, 
+                                fines de semana y feriados chilenos.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body text-center p-3">
+                            <div class="bg-success bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-2" style="width: 60px; height: 60px;">
+                                <i class="bi bi-calendar3 text-success fs-4"></i>
+                            </div>
+                            <h6 class="card-title">Gestión de Plazos</h6>
+                            <p class="card-text text-muted small text-break">
+                                Organiza y gestiona todos tus plazos judiciales en un calendario 
+                                intuitivo con estados y alertas.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body text-center p-3">
+                            <div class="bg-warning bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-2" style="width: 60px; height: 60px;">
+                                <i class="bi bi-download text-warning fs-4"></i>
+                            </div>
+                            <h6 class="card-title">Exportación</h6>
+                            <p class="card-text text-muted small text-break">
+                                Exporta tus calendarios a PDF o formato iCalendar (.ics) 
+                                para integrar con otras herramientas.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- How it Works Section -->
+    <div class="bg-light py-4">
+        <div class="container">
+            <div class="row text-center mb-4">
+                <div class="col-12">
+                    <h2 class="h2 fw-bold mb-3">¿Cómo funciona?</h2>
+                    <p class="text-muted text-break">
+                        Simple, rápido y eficiente
+                    </p>
+                </div>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-md-3 text-center">
+                    <div class="step-number bg-primary text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
+                        <span class="fw-bold fs-4">1</span>
+                    </div>
+                    <h5>Regístrate</h5>
+                    <p class="text-muted text-break">Crea tu cuenta de abogado o asistente jurídico</p>
+                </div>
+                
+                <div class="col-md-3 text-center">
+                    <div class="step-number bg-primary text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
+                        <span class="fw-bold fs-4">2</span>
+                    </div>
+                    <h5>Ingresa Plazos</h5>
+                    <p class="text-muted text-break">Agrega tus plazos judiciales con todos los detalles</p>
+                </div>
+                
+                <div class="col-md-3 text-center">
+                    <div class="step-number bg-primary text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
+                        <span class="fw-bold fs-4">3</span>
+                    </div>
+                    <h5>Gestiona</h5>
+                    <p class="text-muted text-break">Visualiza, edita y organiza tus plazos</p>
+                </div>
+                
+                <div class="col-md-3 text-center">
+                    <div class="step-number bg-primary text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
+                        <span class="fw-bold fs-4">4</span>
+                    </div>
+                    <h5>Exporta</h5>
+                    <p class="text-muted text-break">Comparte o integra con otras herramientas</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CTA Section -->
+    <div class="py-4 bg-primary text-white">
+        <div class="container text-center">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <h2 class="h2 fw-bold mb-3">
+                        ¿Listo para optimizar tu gestión judicial?
+                    </h2>
+                    <p class="mb-3 text-break">
+                        Únete a los abogados que ya confían en nuestro sistema para 
+                        gestionar sus plazos judiciales de manera eficiente.
+                    </p>
+                    <div class="d-flex gap-2 justify-content-center flex-wrap">
+                        <a href="/usuarios/registro/" class="btn btn-light btn-lg">
+                            <i class="bi bi-rocket me-2"></i>
+                            Comenzar Ahora
+                        </a>
+                        <a href="/usuarios/login/" class="btn btn-outline-light btn-lg">
+                            <i class="bi bi-box-arrow-in-right me-2"></i>
+                            Ya tengo cuenta
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-3">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <h6 class="mb-0">Calendario Judicial</h6>
+                    <small class="text-muted">Sistema de gestión de plazos legales</small>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <small class="text-muted">
+                        Desarrollado para el sistema judicial chileno
+                    </small>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>
+
+<style>
+.hero-section {
+    background: linear-gradient(135deg, #0d6efd 0%, #6610f2 100%);
+}
+
+.step-number {
+    font-size: 1.5rem;
+}
+
+.card {
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.hero-image i {
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+}
+</style>
+{% endblock %}

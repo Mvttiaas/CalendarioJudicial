@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ titulo }}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            font-size: 12px;
+            line-height: 1.4;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #007bff;
+            padding-bottom: 20px;
+        }
+        
+        .header h1 {
+            color: #007bff;
+            margin: 0;
+            font-size: 24px;
+        }
+        
+        .header p {
+            margin: 5px 0 0 0;
+            color: #666;
+        }
+        
+        .summary {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        
+        .summary h3 {
+            margin: 0 0 10px 0;
+            color: #495057;
+            font-size: 16px;
+        }
+        
+        .summary-stats {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+        
+        .stat-item {
+            text-align: center;
+            margin: 5px;
+        }
+        
+        .stat-number {
+            font-size: 18px;
+            font-weight: bold;
+            color: #007bff;
+        }
+        
+        .stat-label {
+            font-size: 10px;
+            color: #666;
+            text-transform: uppercase;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        
+        th, td {
+            border: 1px solid #dee2e6;
+            padding: 8px;
+            text-align: left;
+            vertical-align: top;
+        }
+        
+        th {
+            background-color: #007bff;
+            color: white;
+            font-weight: bold;
+            text-align: center;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        
+        .urgente {
+            background-color: #fff3cd !important;
+        }
+        
+        .vencido {
+            background-color: #f8d7da !important;
+        }
+        
+        .corriendo {
+            background-color: #d1ecf1 !important;
+        }
+        
+        .badge {
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-size: 10px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+        
+        .badge-danger {
+            background-color: #dc3545;
+            color: white;
+        }
+        
+        .badge-warning {
+            background-color: #ffc107;
+            color: #212529;
+        }
+        
+        .badge-success {
+            background-color: #28a745;
+            color: white;
+        }
+        
+        .badge-info {
+            background-color: #17a2b8;
+            color: white;
+        }
+        
+        .badge-secondary {
+            background-color: #6c757d;
+            color: white;
+        }
+        
+        .footer {
+            margin-top: 30px;
+            text-align: center;
+            font-size: 10px;
+            color: #666;
+            border-top: 1px solid #dee2e6;
+            padding-top: 10px;
+        }
+        
+        .page-break {
+            page-break-before: always;
+        }
+        
+        .no-data {
+            text-align: center;
+            padding: 40px;
+            color: #666;
+        }
+        
+        .no-data i {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>{{ titulo }}</h1>
+        <p>Generado el {{ fecha_generacion|date:"d/m/Y H:i" }}</p>
+    </div>
+    
+    <div class="summary">
+        <h3>Resumen de Plazos</h3>
+        <div class="summary-stats">
+            <div class="stat-item">
+                <div class="stat-number">{{ total_plazos }}</div>
+                <div class="stat-label">Total Plazos</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">{{ plazos|length }}</div>
+                <div class="stat-label">Mostrados</div>
+            </div>
+        </div>
+    </div>
+    
+    {% if plazos %}
+        <table>
+            <thead>
+                <tr>
+                    <th style="width: 5%;">ID</th>
+                    <th style="width: 15%;">Tipo Documento</th>
+                    <th style="width: 12%;">Procedimiento</th>
+                    <th style="width: 8%;">Rol</th>
+                    <th style="width: 8%;">RUT Cliente</th>
+                    <th style="width: 10%;">Fecha Inicio</th>
+                    <th style="width: 10%;">Fecha Vencimiento</th>
+                    <th style="width: 8%;">Días Plazo</th>
+                    <th style="width: 8%;">Tipo Día</th>
+                    <th style="width: 8%;">Estado</th>
+                    <th style="width: 12%;">Clave Cliente</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for plazo in plazos %}
+                <tr class="{% if plazo.estado == 'vencido' %}vencido{% elif plazo.dias_restantes and plazo.dias_restantes <= 3 %}urgente{% elif plazo.estado == 'corriendo' %}corriendo{% endif %}">
+                    <td style="text-align: center;">{{ plazo.id }}</td>
+                    <td>{{ plazo.get_tipo_documento_display }}</td>
+                    <td>{{ plazo.get_procedimiento_display }}</td>
+                    <td><code>{{ plazo.rol }}</code></td>
+                    <td><code>{{ plazo.rut_cliente }}</code></td>
+                    <td>{{ plazo.fecha_inicio|date:"d/m/Y" }}</td>
+                    <td><strong>{{ plazo.fecha_vencimiento|date:"d/m/Y" }}</strong></td>
+                    <td style="text-align: center;">{{ plazo.dias_plazo }}</td>
+                    <td style="text-align: center;">{{ plazo.get_tipo_dia_display }}</td>
+                    <td style="text-align: center;">
+                        <span class="badge badge-{% if plazo.estado == 'vencido' %}danger{% elif plazo.estado == 'corriendo' %}info{% elif plazo.estado == 'esperando_proveido' %}warning{% elif plazo.estado == 'suspendido' %}secondary{% else %}success{% endif %}">
+                            {{ plazo.get_estado_display }}
+                        </span>
+                    </td>
+                    <td><code>{{ plazo.clave_cliente }}</code></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <div class="no-data">
+            <i>📅</i>
+            <h3>No hay plazos para mostrar</h3>
+            <p>No se encontraron plazos que coincidan con los criterios seleccionados.</p>
+        </div>
+    {% endif %}
+    
+    <div class="footer">
+        <p>
+            <strong>Calendario Judicial</strong> - Sistema de Gestión de Plazos<br>
+            Generado automáticamente el {{ fecha_generacion|date:"d/m/Y H:i" }}
+        </p>
+    </div>
+</body>
+</html>

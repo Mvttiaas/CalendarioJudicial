@@ -1,0 +1,8 @@
+# Dependencias para pruebas con Gherkin/BDD
+behave==1.2.6
+selenium==4.15.2
+webdriver-manager==4.0.1
+pytest==7.4.3
+pytest-django==4.7.0
+factory-boy==3.3.0
+faker==20.1.0

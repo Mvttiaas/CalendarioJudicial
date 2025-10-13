@@ -1,0 +1,343 @@
+{% extends 'base.html' %}
+
+{% block title %}Editar Plazo - Calendario Judicial{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <h1 class="mb-4">
+            <i class="bi bi-pencil"></i>
+            Editar Plazo Judicial #{{ plazo.id }}
+        </h1>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-8">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">
+                    <i class="bi bi-file-text"></i>
+                    Información del Plazo
+                </h5>
+            </div>
+            <div class="card-body">
+                <form method="post" enctype="multipart/form-data" novalidate>
+                    {% csrf_token %}
+                    
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="{{ form.tipo_documento.id_for_label }}" class="form-label">
+                                {{ form.tipo_documento.label }}
+                                <span class="text-danger">*</span>
+                            </label>
+                            {{ form.tipo_documento }}
+                            {% if form.tipo_documento.errors %}
+                                <div class="invalid-feedback d-block">
+                                    {% for error in form.tipo_documento.errors %}
+                                        {{ error }}
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                        
+                        <div class="col-md-6 mb-3">
+                            <label for="{{ form.procedimiento.id_for_label }}" class="form-label">
+                                {{ form.procedimiento.label }}
+                                <span class="text-danger">*</span>
+                            </label>
+                            {{ form.procedimiento }}
+                            {% if form.procedimiento.errors %}
+                                <div class="invalid-feedback d-block">
+                                    {% for error in form.procedimiento.errors %}
+                                        {{ error }}
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-4 mb-3">
+                            <label for="{{ form.dias_plazo.id_for_label }}" class="form-label">
+                                {{ form.dias_plazo.label }}
+                                <span class="text-danger">*</span>
+                            </label>
+                            {{ form.dias_plazo }}
+                            {% if form.dias_plazo.errors %}
+                                <div class="invalid-feedback d-block">
+                                    {% for error in form.dias_plazo.errors %}
+                                        {{ error }}
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                        
+                        <div class="col-md-4 mb-3">
+                            <label for="{{ form.tipo_dia.id_for_label }}" class="form-label">
+                                {{ form.tipo_dia.label }}
+                                <span class="text-danger">*</span>
+                            </label>
+                            {{ form.tipo_dia }}
+                            {% if form.tipo_dia.errors %}
+                                <div class="invalid-feedback d-block">
+                                    {% for error in form.tipo_dia.errors %}
+                                        {{ error }}
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                        
+                        <div class="col-md-4 mb-3">
+                            <label for="{{ form.fecha_inicio.id_for_label }}" class="form-label">
+                                {{ form.fecha_inicio.label }}
+                                <span class="text-danger">*</span>
+                            </label>
+                            {{ form.fecha_inicio }}
+                            {% if form.fecha_inicio.errors %}
+                                <div class="invalid-feedback d-block">
+                                    {% for error in form.fecha_inicio.errors %}
+                                        {{ error }}
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="{{ form.rol.id_for_label }}" class="form-label">
+                                {{ form.rol.label }}
+                                <span class="text-danger">*</span>
+                            </label>
+                            {{ form.rol }}
+                            {% if form.rol.errors %}
+                                <div class="invalid-feedback d-block">
+                                    {% for error in form.rol.errors %}
+                                        {{ error }}
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                            <div class="form-text">Serie de números para identificar el proceso</div>
+                        </div>
+                        
+                        <div class="col-md-6 mb-3">
+                            <label for="{{ form.rut_cliente.id_for_label }}" class="form-label">
+                                {{ form.rut_cliente.label }}
+                                <span class="text-danger">*</span>
+                            </label>
+                            {{ form.rut_cliente }}
+                            {% if form.rut_cliente.errors %}
+                                <div class="invalid-feedback d-block">
+                                    {% for error in form.rut_cliente.errors %}
+                                        {{ error }}
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                            <div class="form-text">Formato: 12345678-9 o 12.345.678-9</div>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="{{ form.clave_cliente.id_for_label }}" class="form-label">
+                                {{ form.clave_cliente.label }}
+                                <span class="text-danger">*</span>
+                            </label>
+                            {{ form.clave_cliente }}
+                            {% if form.clave_cliente.errors %}
+                                <div class="invalid-feedback d-block">
+                                    {% for error in form.clave_cliente.errors %}
+                                        {{ error }}
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                            <div class="form-text">Clave para identificar al cliente</div>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="{{ form.estado.id_for_label }}" class="form-label">
+                                {{ form.estado.label }}
+                                <span class="text-danger">*</span>
+                            </label>
+                            {{ form.estado }}
+                            {% if form.estado.errors %}
+                                <div class="invalid-feedback d-block">
+                                    {% for error in form.estado.errors %}
+                                        {{ error }}
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="{{ form.observaciones.id_for_label }}" class="form-label">
+                            {{ form.observaciones.label }}
+                            <small class="text-muted">(opcional, máximo 200 caracteres)</small>
+                        </label>
+                        {{ form.observaciones }}
+                        <div class="form-text">
+                            <small class="text-muted">
+                                <span id="char-count">0</span>/200 caracteres
+                            </small>
+                        </div>
+                        {% if form.observaciones.errors %}
+                            <div class="invalid-feedback d-block">
+                                {% for error in form.observaciones.errors %}
+                                    {{ error }}
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="{{ form.documento_adjunto.id_for_label }}" class="form-label">
+                            {{ form.documento_adjunto.label }}
+                            <small class="text-muted">(opcional)</small>
+                        </label>
+                        {{ form.documento_adjunto }}
+                        {% if plazo.documento_adjunto %}
+                            <div class="form-text">
+                                <small class="text-muted">
+                                    <i class="bi bi-paperclip"></i>
+                                    Archivo actual: 
+                                    <a href="{{ plazo.documento_adjunto.url }}" target="_blank" class="text-decoration-none">
+                                        {{ plazo.documento_adjunto.name|slice:"15:" }}
+                                    </a>
+                                </small>
+                            </div>
+                        {% endif %}
+                        <div class="form-text">
+                            <small class="text-muted">
+                                <i class="bi bi-info-circle"></i>
+                                Formatos permitidos: PDF, DOC, DOCX, TXT, JPG, JPEG, PNG (máximo 10MB)
+                            </small>
+                        </div>
+                        {% if form.documento_adjunto.errors %}
+                            <div class="invalid-feedback d-block">
+                                {% for error in form.documento_adjunto.errors %}
+                                    {{ error }}
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+                    
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                        <a href="{% url 'detalle_plazo' plazo.id %}" class="btn btn-outline-secondary me-md-2">
+                            <i class="bi bi-arrow-left"></i>
+                            Cancelar
+                        </a>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="bi bi-check-circle"></i>
+                            Guardar Cambios
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-lg-4">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">
+                    <i class="bi bi-info-circle"></i>
+                    Información Actual
+                </h5>
+            </div>
+            <div class="card-body">
+                <table class="table table-borderless table-sm">
+                    <tr>
+                        <td><strong>Fecha de Vencimiento:</strong></td>
+                        <td>{{ plazo.fecha_vencimiento|date:"d/m/Y" }}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Días Restantes:</strong></td>
+                        <td>
+                            {% if plazo.dias_restantes %}
+                                <span class="badge {% if plazo.dias_restantes <= 0 %}bg-danger{% elif plazo.dias_restantes <= 3 %}bg-warning{% else %}bg-success{% endif %}">
+                                    {{ plazo.dias_restantes }} días
+                                </span>
+                            {% else %}
+                                <span class="badge bg-secondary">N/A</span>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>Estado:</strong></td>
+                        <td>
+                            <span class="badge estado-badge bg-{% if plazo.estado == 'vencido' %}danger{% elif plazo.estado == 'corriendo' %}info{% elif plazo.estado == 'esperando_proveido' %}warning{% elif plazo.estado == 'suspendido' %}secondary{% else %}primary{% endif %}">
+                                {{ plazo.get_estado_display }}
+                            </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>Última Modificación:</strong></td>
+                        <td>{{ plazo.updated_at|date:"d/m/Y H:i" }}</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        
+        <div class="alert alert-info mt-3">
+            <h6><i class="bi bi-lightbulb"></i> Nota</h6>
+            <p class="mb-0">
+                Al modificar la fecha de inicio, días de plazo o tipo de día, 
+                la fecha de vencimiento se recalculará automáticamente.
+            </p>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    // Validación en tiempo real del RUT
+    // Validación del ROL (solo números)
+    document.getElementById('{{ form.rol.id_for_label }}').addEventListener('input', function(e) {
+        let value = e.target.value.replace(/[^0-9]/g, '');
+        e.target.value = value;
+        
+        if (value.length >= 3) {
+            e.target.classList.add('is-valid');
+            e.target.classList.remove('is-invalid');
+        } else {
+            e.target.classList.remove('is-valid');
+            e.target.classList.add('is-invalid');
+        }
+    });
+    
+    // Validación del RUT del cliente
+    document.getElementById('{{ form.rut_cliente.id_for_label }}').addEventListener('input', function(e) {
+        let rut = e.target.value.replace(/[^0-9kK]/g, '');
+        if (rut.length > 1) {
+            let rutFormateado = rut.slice(0, -1).replace(/\B(?=(\d{3})+(?!\d))/g, '.') + '-' + rut.slice(-1);
+            e.target.value = rutFormateado;
+        }
+    });
+    
+    // Contador de caracteres para observaciones
+    const observacionesField = document.getElementById('{{ form.observaciones.id_for_label }}');
+    const charCount = document.getElementById('char-count');
+    
+    // Inicializar contador con el valor actual
+    charCount.textContent = observacionesField.value.length;
+    
+    observacionesField.addEventListener('input', function(e) {
+        const length = e.target.value.length;
+        charCount.textContent = length;
+        
+        // Cambiar color según la longitud
+        if (length > 180) {
+            charCount.style.color = '#dc3545'; // Rojo
+        } else if (length > 150) {
+            charCount.style.color = '#ffc107'; // Amarillo
+        } else {
+            charCount.style.color = '#6c757d'; // Gris
+        }
+    });
+</script>
+{% endblock %}

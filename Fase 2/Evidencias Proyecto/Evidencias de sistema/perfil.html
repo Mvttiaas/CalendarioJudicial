@@ -1,0 +1,374 @@
+{% extends 'base.html' %}
+
+{% block title %}Mi Perfil - Calendario Judicial{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <h1 class="mb-4">
+            <i class="bi bi-person-circle"></i>
+            Mi Perfil
+        </h1>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-8">
+        <!-- Información del perfil -->
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">
+                    <i class="bi bi-person"></i>
+                    Información Personal
+                </h5>
+            </div>
+            <div class="card-body">
+                <form method="post" novalidate id="perfil-form">
+                    {% csrf_token %}
+                    
+                    <!-- Información básica -->
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="{{ form_perfil.username.id_for_label }}" class="form-label">
+                                {{ form_perfil.username.label }}
+                            </label>
+                            {{ form_perfil.username }}
+                            {% if form_perfil.username.errors %}
+                                <div class="invalid-feedback d-block">
+                                    {% for error in form_perfil.username.errors %}
+                                        {{ error }}
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                        
+                        <div class="col-md-6 mb-3">
+                            <label for="{{ form_perfil.email.id_for_label }}" class="form-label">
+                                {{ form_perfil.email.label }}
+                            </label>
+                            {{ form_perfil.email }}
+                            {% if form_perfil.email.errors %}
+                                <div class="invalid-feedback d-block">
+                                    {% for error in form_perfil.email.errors %}
+                                        {{ error }}
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="{{ form_perfil.first_name.id_for_label }}" class="form-label">
+                                {{ form_perfil.first_name.label }}
+                            </label>
+                            {{ form_perfil.first_name }}
+                            {% if form_perfil.first_name.errors %}
+                                <div class="invalid-feedback d-block">
+                                    {% for error in form_perfil.first_name.errors %}
+                                        {{ error }}
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                        
+                        <div class="col-md-6 mb-3">
+                            <label for="{{ form_perfil.last_name.id_for_label }}" class="form-label">
+                                {{ form_perfil.last_name.label }}
+                            </label>
+                            {{ form_perfil.last_name }}
+                            {% if form_perfil.last_name.errors %}
+                                <div class="invalid-feedback d-block">
+                                    {% for error in form_perfil.last_name.errors %}
+                                        {{ error }}
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="{{ form_perfil.telefono.id_for_label }}" class="form-label">
+                                {{ form_perfil.telefono.label }}
+                            </label>
+                            {{ form_perfil.telefono }}
+                            {% if form_perfil.telefono.errors %}
+                                <div class="invalid-feedback d-block">
+                                    {% for error in form_perfil.telefono.errors %}
+                                        {{ error }}
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    
+                    <!-- Información profesional -->
+                    <hr class="my-4">
+                    <h6 class="mb-3">
+                        <i class="bi bi-briefcase"></i>
+                        Información Profesional
+                    </h6>
+                    
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="{{ form_perfil.tipo_usuario.id_for_label }}" class="form-label">
+                                {{ form_perfil.tipo_usuario.label }}
+                            </label>
+                            {{ form_perfil.tipo_usuario }}
+                            {% if form_perfil.tipo_usuario.errors %}
+                                <div class="invalid-feedback d-block">
+                                    {% for error in form_perfil.tipo_usuario.errors %}
+                                        {{ error }}
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                        
+                        <div class="col-md-6 mb-3">
+                            <label for="{{ form_perfil.especialidad.id_for_label }}" class="form-label">
+                                {{ form_perfil.especialidad.label }}
+                            </label>
+                            {{ form_perfil.especialidad }}
+                            {% if form_perfil.especialidad.errors %}
+                                <div class="invalid-feedback d-block">
+                                    {% for error in form_perfil.especialidad.errors %}
+                                        {{ error }}
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="{{ form_perfil.rut.id_for_label }}" class="form-label">
+                                {{ form_perfil.rut.label }}
+                            </label>
+                            {{ form_perfil.rut }}
+                            {% if form_perfil.rut.errors %}
+                                <div class="invalid-feedback d-block">
+                                    {% for error in form_perfil.rut.errors %}
+                                        {{ error }}
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                        
+                        <div class="col-md-6 mb-3">
+                            <label for="{{ form_perfil.numero_licencia.id_for_label }}" class="form-label">
+                                {{ form_perfil.numero_licencia.label }}
+                            </label>
+                            {{ form_perfil.numero_licencia }}
+                            {% if form_perfil.numero_licencia.errors %}
+                                <div class="invalid-feedback d-block">
+                                    {% for error in form_perfil.numero_licencia.errors %}
+                                        {{ error }}
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    
+                    
+                    <!-- Configuración -->
+                    <hr class="my-4">
+                    <h6 class="mb-3">
+                        <i class="bi bi-gear"></i>
+                        Configuración
+                    </h6>
+                    
+                    <div class="row">
+                        <div class="col-md-4 mb-3">
+                            <label for="{{ form_config.tema_preferido.id_for_label }}" class="form-label">
+                                {{ form_config.tema_preferido.label }}
+                            </label>
+                            {{ form_config.tema_preferido }}
+                            {% if form_config.tema_preferido.errors %}
+                                <div class="invalid-feedback d-block">
+                                    {% for error in form_config.tema_preferido.errors %}
+                                        {{ error }}
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                        
+                        <div class="col-md-4 mb-3">
+                            <label for="{{ form_config.idioma.id_for_label }}" class="form-label">
+                                {{ form_config.idioma.label }}
+                            </label>
+                            {{ form_config.idioma }}
+                            {% if form_config.idioma.errors %}
+                                <div class="invalid-feedback d-block">
+                                    {% for error in form_config.idioma.errors %}
+                                        {{ error }}
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                        
+                        <div class="col-md-4 mb-3">
+                            <label for="{{ form_config.plazos_por_pagina.id_for_label }}" class="form-label">
+                                {{ form_config.plazos_por_pagina.label }}
+                            </label>
+                            {{ form_config.plazos_por_pagina }}
+                            {% if form_config.plazos_por_pagina.errors %}
+                                <div class="invalid-feedback d-block">
+                                    {% for error in form_config.plazos_por_pagina.errors %}
+                                        {{ error }}
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-4 mb-3">
+                            <div class="form-check">
+                                {{ form_config.notificaciones_email }}
+                                <label class="form-check-label" for="{{ form_config.notificaciones_email.id_for_label }}">
+                                    {{ form_config.notificaciones_email.label }}
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-4 mb-3">
+                            <div class="form-check">
+                                {{ form_config.notificaciones_push }}
+                                <label class="form-check-label" for="{{ form_config.notificaciones_push.id_for_label }}">
+                                    {{ form_config.notificaciones_push.label }}
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-4 mb-3">
+                            <div class="form-check">
+                                {{ form_config.recordar_filtros }}
+                                <label class="form-check-label" for="{{ form_config.recordar_filtros.id_for_label }}">
+                                    {{ form_config.recordar_filtros.label }}
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                        <a href="{% url 'cambiar_password' %}" class="btn btn-outline-secondary me-2">
+                            <i class="bi bi-key"></i>
+                            Cambiar Contraseña
+                        </a>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="bi bi-check-circle"></i>
+                            Guardar Cambios
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-lg-4">
+        <!-- Información de la cuenta -->
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">
+                    <i class="bi bi-info-circle"></i>
+                    Información de la Cuenta
+                </h5>
+            </div>
+            <div class="card-body">
+                <table class="table table-borderless table-sm">
+                    <tr>
+                        <td><strong>Usuario:</strong></td>
+                        <td>{{ usuario.username }}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>RUT:</strong></td>
+                        <td>{{ usuario.rut }}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Miembro desde:</strong></td>
+                        <td>{{ usuario.date_joined|date:"d/m/Y" }}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Último acceso:</strong></td>
+                        <td>{{ usuario.last_login|date:"d/m/Y H:i" }}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Estado:</strong></td>
+                        <td>
+                            <span class="badge bg-{% if usuario.is_active %}success{% else %}danger{% endif %}">
+                                {% if usuario.is_active %}Activo{% else %}Inactivo{% endif %}
+                            </span>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        
+        <!-- Configuraciones -->
+        
+        <!-- Acciones -->
+        <div class="card mt-3">
+            <div class="card-header">
+                <h5 class="mb-0">
+                    <i class="bi bi-tools"></i>
+                    Acciones
+                </h5>
+            </div>
+            <div class="card-body">
+                <div class="d-grid gap-2">
+                    <a href="{% url 'index' %}" class="btn btn-outline-primary">
+                        <i class="bi bi-house"></i>
+                        Volver al Dashboard
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    // Validación en tiempo real del RUT
+    document.addEventListener('DOMContentLoaded', function() {
+        const rutInput = document.getElementById('{{ form_perfil.rut.id_for_label }}');
+        if (rutInput) {
+            rutInput.addEventListener('input', function(e) {
+                let rut = e.target.value.replace(/[^0-9kK]/g, '');
+                if (rut.length > 1) {
+                    let rutFormateado = rut.slice(0, -1).replace(/\B(?=(\d{3})+(?!\d))/g, '.') + '-' + rut.slice(-1);
+                    e.target.value = rutFormateado;
+                }
+            });
+        }
+        
+        // Asegurar que los dropdowns funcionen correctamente
+        const selects = document.querySelectorAll('.form-select');
+        selects.forEach(select => {
+            // Limpiar event listeners existentes
+            const newSelect = select.cloneNode(true);
+            select.parentNode.replaceChild(newSelect, select);
+            
+            // Agregar event listeners simples
+            newSelect.addEventListener('click', function(e) {
+                e.stopPropagation();
+                this.focus();
+            });
+            
+            newSelect.addEventListener('mousedown', function(e) {
+                e.stopPropagation();
+            });
+            
+            newSelect.addEventListener('focus', function(e) {
+                this.style.zIndex = '9999';
+            });
+            
+            newSelect.addEventListener('blur', function(e) {
+                this.style.zIndex = '';
+            });
+        });
+    });
+</script>
+{% endblock %}
+

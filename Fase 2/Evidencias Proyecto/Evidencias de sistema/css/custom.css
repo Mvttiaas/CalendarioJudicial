@@ -1,0 +1,263 @@
+/* Estilos personalizados para Calendario Judicial */
+
+/* Variables CSS */
+:root {
+    --primary-color: #007bff;
+    --secondary-color: #6c757d;
+    --success-color: #28a745;
+    --danger-color: #dc3545;
+    --warning-color: #ffc107;
+    --info-color: #17a2b8;
+    --light-color: #f8f9fa;
+    --dark-color: #343a40;
+}
+
+/* Estilos generales */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8f9fa;
+}
+
+/* Navbar personalizada */
+.navbar-brand {
+    font-weight: 700;
+    font-size: 1.5rem;
+}
+
+.navbar-nav .nav-link {
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.navbar-nav .nav-link:hover {
+    color: rgba(255, 255, 255, 0.8) !important;
+}
+
+/* Cards personalizadas */
+.card {
+    border: none;
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+    transition: box-shadow 0.15s ease-in-out;
+}
+
+.card:hover {
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+.card-stat {
+    transition: transform 0.2s ease-in-out;
+}
+
+.card-stat:hover {
+    transform: translateY(-2px);
+}
+
+/* Estados de plazos */
+.urgente {
+    background-color: #fff3cd !important;
+    border-left: 4px solid #ffc107 !important;
+}
+
+.vencido {
+    background-color: #f8d7da !important;
+    border-left: 4px solid #dc3545 !important;
+}
+
+.corriendo {
+    background-color: #d1ecf1 !important;
+    border-left: 4px solid #0dcaf0 !important;
+}
+
+.suspendido {
+    background-color: #e2e3e5 !important;
+    border-left: 4px solid #6c757d !important;
+}
+
+/* Badges personalizados */
+.estado-badge {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Tablas responsivas */
+.table-responsive {
+    border-radius: 0.375rem;
+    overflow: hidden;
+}
+
+.table th {
+    background-color: var(--primary-color);
+    color: white;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.875rem;
+    letter-spacing: 0.5px;
+    border: none;
+}
+
+.table td {
+    vertical-align: middle;
+    border-color: #dee2e6;
+}
+
+.table-hover tbody tr:hover {
+    background-color: rgba(0, 123, 255, 0.05);
+}
+
+/* Botones personalizados */
+.btn-group-sm > .btn, .btn-sm {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    border-radius: 0.25rem;
+}
+
+.btn {
+    font-weight: 500;
+    transition: all 0.15s ease-in-out;
+}
+
+.btn:hover {
+    transform: translateY(-1px);
+}
+
+/* Formularios */
+.form-label {
+    font-weight: 600;
+    color: var(--dark-color);
+    margin-bottom: 0.5rem;
+}
+
+.form-control, .form-select {
+    border-radius: 0.375rem;
+    border: 1px solid #ced4da;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.form-control:focus, .form-select:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+/* Alertas personalizadas */
+.alert {
+    border: none;
+    border-radius: 0.5rem;
+    font-weight: 500;
+}
+
+.alert-info {
+    background-color: #d1ecf1;
+    color: #0c5460;
+}
+
+.alert-warning {
+    background-color: #fff3cd;
+    color: #856404;
+}
+
+.alert-danger {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+.alert-success {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+/* Paginación */
+.pagination .page-link {
+    color: var(--primary-color);
+    border-color: #dee2e6;
+    font-weight: 500;
+}
+
+.pagination .page-item.active .page-link {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.pagination .page-link:hover {
+    color: var(--primary-color);
+    background-color: #e9ecef;
+}
+
+/* Footer */
+footer {
+    margin-top: auto;
+    background-color: #f8f9fa !important;
+    border-top: 1px solid #dee2e6;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .card-stat {
+        margin-bottom: 1rem;
+    }
+    
+    .table-responsive {
+        font-size: 0.875rem;
+    }
+    
+    .btn-group-sm {
+        flex-direction: column;
+    }
+    
+    .btn-group-sm .btn {
+        margin-bottom: 0.25rem;
+    }
+}
+
+/* Animaciones */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in {
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+/* Utilidades */
+.text-truncate-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+/* Loading spinner */
+.spinner-border-sm {
+    width: 1rem;
+    height: 1rem;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8;
+}

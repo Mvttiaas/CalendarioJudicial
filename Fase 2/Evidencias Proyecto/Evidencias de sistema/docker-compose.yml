@@ -1,0 +1,56 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:15
+    container_name: calendario_judicial_db
+    environment:
+      POSTGRES_DB: calendario_judicial
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres123
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    restart: unless-stopped
+
+  web:
+    build: .
+    container_name: calendario_judicial_web
+    command: >
+      sh -c "python manage.py migrate &&
+             python manage.py collectstatic --noinput &&
+             python manage.py loaddata plazos/fixtures/codigos_procedimiento.json &&
+             gunicorn calendario_judicial.wsgi:application --bind 0.0.0.0:8000"
+    volumes:
+      - .:/app
+      - static_volume:/app/staticfiles
+      - media_volume:/app/media
+    ports:
+      - "8000:8000"
+    environment:
+      - DEBUG=False
+      - DATABASE_URL=postgresql://postgres:postgres123@db:5432/calendario_judicial
+      - SECRET_KEY=tu-clave-secreta-muy-segura-aqui
+      - ALLOWED_HOSTS=localhost,127.0.0.1,0.0.0.0
+    depends_on:
+      - db
+    restart: unless-stopped
+
+  nginx:
+    image: nginx:alpine
+    container_name: calendario_judicial_nginx
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+      - static_volume:/app/staticfiles
+      - media_volume:/app/media
+    depends_on:
+      - web
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
+  static_volume:
+  media_volume:

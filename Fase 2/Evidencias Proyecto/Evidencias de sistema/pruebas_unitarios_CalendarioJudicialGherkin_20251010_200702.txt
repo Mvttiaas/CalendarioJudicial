@@ -1,0 +1,498 @@
+﻿================================================================================
+PRUEBAS UNITARIAS GHERKIN/BDD - CALENDARIO JUDICIAL
+================================================================================
+Fecha y Hora: 10-10-2025 20:07:49
+Archivo: pruebas_unitarios_CalendarioJudicialGherkin_20251010_200702.txt
+Tiempo de Ejecucion: 00:00:47
+================================================================================
+
+RESUMEN ESTADISTICO
+----------------------------------------
+Total de escenarios: 126
+Exitosos: 71
+Fallidos: 55
+Omitidos: 0
+Tasa de exito: 56.3%
+
+ESTADO: ALGUNAS PRUEBAS FALLARON
+
+================================================================================
+CARACTERISTICAS PROBADAS
+================================================================================
+1. AUTENTICACION DE USUARIOS (12 escenarios)
+   - Acceso a formularios de login y registro
+   - Registro como abogado, juez y asistente legal
+   - Inicio de sesion con username y email
+   - Validacion de credenciales incorrectas
+   - Validacion de formularios (contrasenas, RUT, email)
+   - Cierre de sesion
+
+2. GESTION DE PLAZOS JUDICIALES (18 escenarios)
+   - Creacion de plazos (contestacion, demanda, dias corridos)
+   - Visualizacion en calendario y detalles
+   - Busqueda por multiples criterios
+   - Calculo automatico de fechas de vencimiento
+   - Edicion y eliminacion de plazos
+   - Gestion de observaciones y documentos adjuntos
+   - Filtrado y ordenamiento
+   - Visualizacion de estadisticas
+
+3. GESTION DE PERFIL DE USUARIO (10 escenarios)
+   - Acceso y visualizacion de informacion personal
+   - Actualizacion de datos personales
+   - Cambio de contrasena con validaciones
+   - Configuracion de tema e idioma
+   - Configuracion de preferencias
+   - Historial de actividad
+   - Exportacion de datos personales
+
+4. DASHBOARD Y ESTADISTICAS (12 escenarios)
+   - Dashboard para usuarios nuevos y existentes
+   - Estadisticas generales y especificas
+   - Visualizacion de plazos recientes y proximos a vencer
+   - Graficos y visualizaciones
+   - Filtrado por periodo
+   - Notificaciones y alertas
+   - Resumen de actividad diaria
+
+5. EXPORTACION DE DATOS (8 escenarios)
+   - Exportacion a PDF con formato profesional
+   - Exportacion a ICS para calendarios
+   - Exportacion de plazos seleccionados
+   - Exportacion de plazos filtrados
+   - Exportacion por rango de fechas
+   - Exportacion por tipo de documento
+   - Exportacion de plazos vencidos
+   - Exportacion de plazos proximos a vencer
+
+================================================================================
+COBERTURA DE PRUEBAS
+================================================================================
+Total de escenarios: 126
+- Autenticacion: 12 escenarios
+- Plazos Judiciales: 18 escenarios
+- Gestion de Perfil: 10 escenarios
+- Dashboard: 12 escenarios
+- Exportacion: 8 escenarios
+
+================================================================================
+DETALLE DE EJECUCION
+================================================================================
+
+=== INICIO DE PRUEBAS === 
+[EJECUTANDO] Usuario puede acceder a la pßgina de login 
+[PASO] Usuario puede acceder a la pßgina de login 
+[EJECUTANDO] Usuario puede acceder a la pßgina de registro 
+[PASO] Usuario puede acceder a la pßgina de registro 
+[EJECUTANDO] Usuario puede registrarse como abogado 
+[PASO] Usuario puede registrarse como abogado 
+[EJECUTANDO] Usuario puede registrarse como juez 
+[PASO] Usuario puede registrarse como juez 
+[EJECUTANDO] Usuario puede registrarse como asistente legal 
+[PASO] Usuario puede registrarse como asistente legal 
+[EJECUTANDO] Usuario puede iniciar sesion con username 
+[PASO] Usuario puede iniciar sesion con username 
+[EJECUTANDO] Usuario puede iniciar sesion con email 
+[PASO] Usuario puede iniciar sesion con email 
+[EJECUTANDO] Usuario no puede iniciar sesion con credenciales incorrectas 
+[PASO] Usuario no puede iniciar sesion con credenciales incorrectas 
+[EJECUTANDO] Usuario no puede registrarse con contrasenas diferentes 
+[PASO] Usuario no puede registrarse con contrasenas diferentes 
+[EJECUTANDO] Usuario no puede registrarse con RUT invßlido 
+[PASO] Usuario no puede registrarse con RUT invßlido 
+[EJECUTANDO] Usuario no puede registrarse con email invßlido 
+[PASO] Usuario no puede registrarse con email invßlido 
+[EJECUTANDO] Usuario puede cerrar sesion 
+[PASO] Usuario puede cerrar sesion 
+
+--- DASHBOARD Y ESTADISTICAS ---
+[EJECUTANDO] Usuario nuevo ve dashboard vacÝo 
+[PASO] Usuario nuevo ve dashboard vacÝo 
+[EJECUTANDO] Usuario ve estadÝsticas generales 
+[PASO] Usuario ve estadÝsticas generales 
+[EJECUTANDO] Usuario ve plazos recientes 
+[PASO] Usuario ve plazos recientes 
+[EJECUTANDO] Usuario ve plazos proximos a vencer 
+[FALLO] Usuario ve plazos proximos a vencer 
+[EJECUTANDO] Usuario ve plazos vencidos 
+[FALLO] Usuario ve plazos vencidos 
+[EJECUTANDO] Usuario puede acceder al calendario desde el dashboard 
+[PASO] Usuario puede acceder al calendario desde el dashboard 
+[EJECUTANDO] Usuario puede crear un nuevo plazo desde el dashboard 
+[PASO] Usuario puede crear un nuevo plazo desde el dashboard 
+[EJECUTANDO] Usuario ve grßficos de estadÝsticas 
+[PASO] Usuario ve grßficos de estadÝsticas 
+[EJECUTANDO] Usuario puede filtrar estadÝsticas por perÝodo 
+[FALLO] Usuario puede filtrar estadÝsticas por perÝodo 
+[EJECUTANDO] Usuario puede exportar estadÝsticas 
+[FALLO] Usuario puede exportar estadÝsticas 
+[EJECUTANDO] Usuario ve notificaciones importantes 
+[PASO] Usuario ve notificaciones importantes 
+[EJECUTANDO] Usuario puede marcar notificaciones como leÝdas 
+[FALLO] Usuario puede marcar notificaciones como leÝdas 
+[EJECUTANDO] Usuario ve resumen de actividad del dÝa 
+[PASO] Usuario ve resumen de actividad del dÝa 
+
+--- EXPORTACION ---
+[EJECUTANDO] Abogado puede exportar todos los plazos a PDF 
+[FALLO] Abogado puede exportar todos los plazos a PDF 
+
+--- EXPORTACION ---
+[EJECUTANDO] Abogado puede exportar plazos a formato ICS 
+[FALLO] Abogado puede exportar plazos a formato ICS 
+
+--- EXPORTACION ---
+[EJECUTANDO] Abogado puede exportar plazos seleccionados a PDF 
+[PASO] Abogado puede exportar plazos seleccionados a PDF 
+
+--- EXPORTACION ---
+[EJECUTANDO] Abogado puede exportar plazos filtrados 
+[PASO] Abogado puede exportar plazos filtrados 
+
+--- EXPORTACION ---
+[EJECUTANDO] Abogado puede exportar plazos por rango de fechas 
+[PASO] Abogado puede exportar plazos por rango de fechas 
+
+--- EXPORTACION ---
+[EJECUTANDO] Abogado puede exportar plazos por tipo de documento 
+[PASO] Abogado puede exportar plazos por tipo de documento 
+
+--- EXPORTACION ---
+[EJECUTANDO] Abogado puede exportar plazos vencidos 
+[PASO] Abogado puede exportar plazos vencidos 
+
+--- EXPORTACION ---
+[EJECUTANDO] Abogado puede exportar plazos proximos a vencer 
+[PASO] Abogado puede exportar plazos proximos a vencer 
+
+--- EXPORTACION ---
+[EJECUTANDO] Abogado puede exportar a Excel 
+[FALLO] Abogado puede exportar a Excel 
+
+--- EXPORTACION ---
+[EJECUTANDO] Abogado puede exportar a CSV 
+[FALLO] Abogado puede exportar a CSV 
+[EJECUTANDO] Abogado puede programar exportacion automßtica 
+[PASO] Abogado puede programar exportacion automßtica 
+
+--- EXPORTACION ---
+[EJECUTANDO] Abogado puede exportar con plantilla personalizada 
+[FALLO] Abogado puede exportar con plantilla personalizada 
+
+--- EXPORTACION ---
+[EJECUTANDO] Abogado puede exportar estadÝsticas 
+[FALLO] Abogado puede exportar estadÝsticas 
+
+--- EXPORTACION ---
+[EJECUTANDO] Abogado puede exportar por cliente 
+[PASO] Abogado puede exportar por cliente 
+
+--- EXPORTACION ---
+[EJECUTANDO] Abogado puede exportar con contrase±a 
+[FALLO] Abogado puede exportar con contrase±a 
+
+--- EXPORTACION ---
+[EJECUTANDO] Abogado puede exportar plazos filtrados a PDF 
+[FALLO] Abogado puede exportar plazos filtrados a PDF 
+
+--- EXPORTACION ---
+[EJECUTANDO] Abogado puede exportar plazos por rango de fechas especÝfico 
+[FALLO] Abogado puede exportar plazos por rango de fechas especÝfico 
+
+--- EXPORTACION ---
+[EJECUTANDO] Abogado puede exportar plazos vencidos 
+[FALLO] Abogado puede exportar plazos vencidos 
+
+--- EXPORTACION ---
+[EJECUTANDO] Abogado puede exportar plazos proximos a vencer 
+[FALLO] Abogado puede exportar plazos proximos a vencer 
+[EJECUTANDO] Abogado puede configurar exportacion automßtica 
+[FALLO] Abogado puede configurar exportacion automßtica 
+
+--- EXPORTACION ---
+[EJECUTANDO] Abogado puede exportar con plantilla personalizada 
+[FALLO] Abogado puede exportar con plantilla personalizada 
+[EJECUTANDO] Abogado puede proteger exportacion con contrase±a especÝfica 
+[FALLO] Abogado puede proteger exportacion con contrase±a especÝfica 
+
+--- EXPORTACION ---
+[EJECUTANDO] Abogado puede exportar plazos por rango de fechas especÝfico 
+[FALLO] Abogado puede exportar plazos por rango de fechas especÝfico 
+
+--- EXPORTACION ---
+[EJECUTANDO] Abogado puede exportar plazos por tipo de documento 
+[FALLO] Abogado puede exportar plazos por tipo de documento 
+
+--- EXPORTACION ---
+[EJECUTANDO] Abogado puede exportar plazos por estado especÝfico 
+[FALLO] Abogado puede exportar plazos por estado especÝfico 
+
+--- EXPORTACION ---
+[EJECUTANDO] Abogado puede exportar plazos seleccionados manualmente 
+[FALLO] Abogado puede exportar plazos seleccionados manualmente 
+
+--- EXPORTACION ---
+[EJECUTANDO] Abogado puede exportar plazos con plantilla personalizada 
+[FALLO] Abogado puede exportar plazos con plantilla personalizada 
+
+--- EXPORTACION ---
+[EJECUTANDO] Abogado puede exportar plazos vencidos ·nicamente 
+[FALLO] Abogado puede exportar plazos vencidos ·nicamente 
+
+--- EXPORTACION ---
+[EJECUTANDO] Abogado puede exportar plazos proximos a vencer 
+[FALLO] Abogado puede exportar plazos proximos a vencer 
+
+--- EXPORTACION ---
+[EJECUTANDO] Abogado puede exportar plazos de un cliente especÝfico 
+[FALLO] Abogado puede exportar plazos de un cliente especÝfico 
+
+--- EXPORTACION ---
+[EJECUTANDO] Abogado puede exportar plazos en formato ICS con eventos 
+[FALLO] Abogado puede exportar plazos en formato ICS con eventos 
+[EJECUTANDO] Abogado puede configurar exportacion automßtica 
+[FALLO] Abogado puede configurar exportacion automßtica 
+
+--- GESTION DE PERFIL ---
+[EJECUTANDO] Usuario puede acceder a su perfil 
+[PASO] Usuario puede acceder a su perfil 
+[EJECUTANDO] Usuario puede ver su informaci¾n personal 
+[PASO] Usuario puede ver su informaci¾n personal 
+[EJECUTANDO] Usuario puede actualizar su informaci¾n personal 
+[FALLO] Usuario puede actualizar su informaci¾n personal 
+[EJECUTANDO] Usuario puede cambiar su contrase±a 
+[FALLO] Usuario puede cambiar su contrase±a 
+[EJECUTANDO] Usuario no puede cambiar contrase±a con contrase±a actual incorrecta 
+[PASO] Usuario no puede cambiar contrase±a con contrase±a actual incorrecta 
+[EJECUTANDO] Usuario no puede cambiar contrase±a con contrasenas nuevas diferentes 
+[PASO] Usuario no puede cambiar contrase±a con contrasenas nuevas diferentes 
+[EJECUTANDO] Usuario puede cambiar su tema preferido 
+[PASO] Usuario puede cambiar su tema preferido 
+[EJECUTANDO] Usuario puede cambiar el idioma 
+[PASO] Usuario puede cambiar el idioma 
+[EJECUTANDO] Usuario puede configurar plazos por pßgina 
+[PASO] Usuario puede configurar plazos por pßgina 
+[EJECUTANDO] Usuario puede ver su historial de actividad 
+[PASO] Usuario puede ver su historial de actividad 
+[EJECUTANDO] Usuario puede exportar sus datos 
+[FALLO] Usuario puede exportar sus datos 
+[EJECUTANDO] Usuario puede actualizar su informaci¾n de contacto 
+[PASO] Usuario puede actualizar su informaci¾n de contacto 
+[EJECUTANDO] Usuario puede cambiar su contrase±a con validaci¾n 
+[FALLO] Usuario puede cambiar su contrase±a con validaci¾n 
+[EJECUTANDO] Usuario no puede cambiar contrase±a con datos incorrectos 
+[FALLO] Usuario no puede cambiar contrase±a con datos incorrectos 
+[EJECUTANDO] Usuario puede configurar sus preferencias de tema 
+[PASO] Usuario puede configurar sus preferencias de tema 
+[EJECUTANDO] Usuario puede configurar idioma del sistema 
+[FALLO] Usuario puede configurar idioma del sistema 
+[EJECUTANDO] Usuario puede ver su historial de actividad 
+[FALLO] Usuario puede ver su historial de actividad 
+[EJECUTANDO] Usuario puede configurar notificaciones 
+[FALLO] Usuario puede configurar notificaciones 
+[EJECUTANDO] Usuario puede ver estadÝsticas de su perfil 
+[PASO] Usuario puede ver estadÝsticas de su perfil 
+[EJECUTANDO] Usuario puede actualizar su informaci¾n profesional 
+[FALLO] Usuario puede actualizar su informaci¾n profesional 
+
+--- PLAZOS JUDICIALES ---
+[EJECUTANDO] Abogado puede crear un plazo de contestacion 
+[FALLO] Abogado puede crear un plazo de contestacion 
+
+--- PLAZOS JUDICIALES ---
+[EJECUTANDO] Abogado puede crear un plazo de demanda 
+[FALLO] Abogado puede crear un plazo de demanda 
+
+--- PLAZOS JUDICIALES ---
+[EJECUTANDO] Abogado puede crear un plazo de dÝas corridos 
+[FALLO] Abogado puede crear un plazo de dÝas corridos 
+[EJECUTANDO] Abogado puede ver sus plazos en el calendario 
+[PASO] Abogado puede ver sus plazos en el calendario 
+[EJECUTANDO] Abogado puede ver detalles de un plazo 
+[PASO] Abogado puede ver detalles de un plazo 
+[EJECUTANDO] Abogado puede buscar plazos por RUT del cliente 
+[PASO] Abogado puede buscar plazos por RUT del cliente 
+[EJECUTANDO] Abogado puede buscar plazos por rol 
+[PASO] Abogado puede buscar plazos por rol 
+[EJECUTANDO] Abogado puede buscar plazos por tipo de documento 
+[PASO] Abogado puede buscar plazos por tipo de documento 
+[EJECUTANDO] Abogado puede buscar plazos por estado 
+[PASO] Abogado puede buscar plazos por estado 
+[EJECUTANDO] Sistema calcula automßticamente la fecha de vencimiento para dÝas hßbiles 
+[PASO] Sistema calcula automßticamente la fecha de vencimiento para dÝas hßbiles 
+[EJECUTANDO] Sistema calcula automßticamente la fecha de vencimiento para dÝas corridos 
+[FALLO] Sistema calcula automßticamente la fecha de vencimiento para dÝas corridos 
+[EJECUTANDO] Abogado puede editar un plazo existente 
+[PASO] Abogado puede editar un plazo existente 
+[EJECUTANDO] Abogado puede cambiar el estado de un plazo 
+[FALLO] Abogado puede cambiar el estado de un plazo 
+[EJECUTANDO] Abogado puede agregar observaciones a un plazo 
+[PASO] Abogado puede agregar observaciones a un plazo 
+[EJECUTANDO] Abogado puede adjuntar un documento a un plazo 
+[FALLO] Abogado puede adjuntar un documento a un plazo 
+[EJECUTANDO] Abogado puede eliminar un plazo 
+[PASO] Abogado puede eliminar un plazo 
+[EJECUTANDO] Abogado puede ver plazos vencidos 
+[PASO] Abogado puede ver plazos vencidos 
+[EJECUTANDO] Abogado puede ver plazos proximos a vencer 
+[FALLO] Abogado puede ver plazos proximos a vencer 
+[EJECUTANDO] Abogado puede filtrar plazos por fecha 
+[PASO] Abogado puede filtrar plazos por fecha 
+[EJECUTANDO] Abogado puede ordenar plazos por fecha de vencimiento 
+[PASO] Abogado puede ordenar plazos por fecha de vencimiento 
+[EJECUTANDO] Abogado puede ver estadÝsticas de plazos 
+[PASO] Abogado puede ver estadÝsticas de plazos 
+[EJECUTANDO] Abogado puede buscar plazos por RUT especÝfico 
+[PASO] Abogado puede buscar plazos por RUT especÝfico 
+[EJECUTANDO] Abogado puede buscar plazos por rol especÝfico 
+[PASO] Abogado puede buscar plazos por rol especÝfico 
+[EJECUTANDO] Abogado puede filtrar plazos por tipo de documento 
+[PASO] Abogado puede filtrar plazos por tipo de documento 
+[EJECUTANDO] Abogado puede filtrar plazos por estado 
+[PASO] Abogado puede filtrar plazos por estado 
+[EJECUTANDO] Abogado puede filtrar plazos por rango de fechas 
+[PASO] Abogado puede filtrar plazos por rango de fechas 
+[EJECUTANDO] Abogado puede ordenar plazos por diferentes campos 
+[PASO] Abogado puede ordenar plazos por diferentes campos 
+[EJECUTANDO] Abogado puede ver formulario de creaci¾n de plazo 
+[FALLO] Abogado puede ver formulario de creaci¾n de plazo 
+[EJECUTANDO] Abogado puede ver formulario de edici¾n de plazo 
+[FALLO] Abogado puede ver formulario de edici¾n de plazo 
+[EJECUTANDO] Abogado puede ver filtros de b·squeda 
+[FALLO] Abogado puede ver filtros de b·squeda 
+[EJECUTANDO] Abogado puede agregar observaciones a un plazo 
+[FALLO] Abogado puede agregar observaciones a un plazo 
+[EJECUTANDO] Abogado puede adjuntar documento a un plazo 
+[PASO] Abogado puede adjuntar documento a un plazo 
+[EJECUTANDO] Sistema calcula fecha de vencimiento especÝfica para dÝas hßbiles 
+[FALLO] Sistema calcula fecha de vencimiento especÝfica para dÝas hßbiles 
+[EJECUTANDO] Sistema calcula fecha de vencimiento especÝfica para dÝas corridos 
+[FALLO] Sistema calcula fecha de vencimiento especÝfica para dÝas corridos 
+[EJECUTANDO] Abogado puede cambiar estado de plazo a suspendido 
+[FALLO] Abogado puede cambiar estado de plazo a suspendido 
+[EJECUTANDO] Abogado puede cambiar estado de plazo a vencido 
+[FALLO] Abogado puede cambiar estado de plazo a vencido 
+[EJECUTANDO] Abogado puede crear plazo con c¾digo de procedimiento civil 
+[PASO] Abogado puede crear plazo con c¾digo de procedimiento civil 
+[EJECUTANDO] Abogado puede crear plazo de dÝas corridos 
+[PASO] Abogado puede crear plazo de dÝas corridos 
+[EJECUTANDO] Abogado puede crear plazo con documento adjunto 
+[PASO] Abogado puede crear plazo con documento adjunto 
+[EJECUTANDO] Abogado puede buscar plazos por RUT de cliente 
+[PASO] Abogado puede buscar plazos por RUT de cliente 
+[EJECUTANDO] Abogado puede filtrar plazos por estado vencido 
+[PASO] Abogado puede filtrar plazos por estado vencido 
+[EJECUTANDO] Abogado puede ordenar plazos por fecha de vencimiento 
+[PASO] Abogado puede ordenar plazos por fecha de vencimiento 
+[EJECUTANDO] Abogado puede ver plazos proximos a vencer 
+[PASO] Abogado puede ver plazos proximos a vencer 
+[EJECUTANDO] Abogado puede editar observaciones de un plazo 
+[FALLO] Abogado puede editar observaciones de un plazo 
+[EJECUTANDO] Abogado puede cambiar estado de plazo a suspendido 
+[FALLO] Abogado puede cambiar estado de plazo a suspendido 
+[EJECUTANDO] Abogado puede ver detalles completos de un plazo 
+[PASO] Abogado puede ver detalles completos de un plazo 
+[EJECUTANDO] Abogado puede eliminar un plazo 
+[PASO] Abogado puede eliminar un plazo 
+[EJECUTANDO] Abogado puede crear plazo con validaci¾n de RUT 
+[PASO] Abogado puede crear plazo con validaci¾n de RUT 
+[EJECUTANDO] Abogado puede crear plazo con fecha de inicio futura 
+[PASO] Abogado puede crear plazo con fecha de inicio futura 
+=== FIN DE PRUEBAS === 
+[ERROR]  
+
+[PASOS FALTANTES]
+ 
+[ERROR]  @then(u'el archivo deberÝa usar "la plantilla personalizada"') def step_impl(context):     raise NotImplementedError(u'STEP: Then el archivo deberÝa usar "la plantilla personalizada"') 
+[ERROR]  
+[ERROR]  @then(u'la exportacion deberÝa incluir solo plazos seleccionados') def step_impl(context):     raise NotImplementedError(u'STEP: Then la exportacion deberÝa incluir solo plazos seleccionados') 
+[ERROR]  
+[ERROR]  @then(u'la configuraci¾n de exportacion deberÝa guardarse') def step_impl(context):     raise NotImplementedError(u'STEP: Then la configuraci¾n de exportacion deberÝa guardarse') 
+[ERROR]  
+[ERROR]  @then(u'la exportacion deberÝa estar protegida con contrase±a') def step_impl(context):     raise NotImplementedError(u'STEP: Then la exportacion deberÝa estar protegida con contrase±a') 
+[ERROR]  
+[ERROR]  @given(u'que tengo plazos de diferentes fechas') def step_impl(context):     raise NotImplementedError(u'STEP: Given que tengo plazos de diferentes fechas') 
+[ERROR]  
+[ERROR]  @given(u'que tengo plazos de diferentes tipos') def step_impl(context):     raise NotImplementedError(u'STEP: Given que tengo plazos de diferentes tipos') 
+[ERROR]  
+[ERROR]  @given(u'que tengo plazos en diferentes estados') def step_impl(context):     raise NotImplementedError(u'STEP: Given que tengo plazos en diferentes estados') 
+[ERROR]  
+[ERROR]  @given(u'que hago clic en "cambiar contrase±a"') def step_impl(context):     raise NotImplementedError(u'STEP: Given que hago clic en "cambiar contrase±a"') 
+[ERROR]  
+[ERROR]  @then(u'la contrase±a deberÝa ser actualizada') def step_impl(context):     raise NotImplementedError(u'STEP: Then la contrase±a deberÝa ser actualizada') 
+[ERROR]  
+[ERROR]  @then(u'el idioma deberÝa cambiar a espa±ol') def step_impl(context):     raise NotImplementedError(u'STEP: Then el idioma deberÝa cambiar a espa±ol') 
+[ERROR]  
+[ERROR]  @given(u'que tengo actividad reciente') def step_impl(context):     raise NotImplementedError(u'STEP: Given que tengo actividad reciente') 
+[ERROR]  
+[ERROR]  @when(u'configuro las notificaciones') def step_impl(context):     raise NotImplementedError(u'STEP: When configuro las notificaciones') 
+[ERROR]  
+[ERROR]  @then(u'las notificaciones deberÝan estar activadas') def step_impl(context):     raise NotImplementedError(u'STEP: Then las notificaciones deberÝan estar activadas') 
+[ERROR]  
+[ERROR]  @when(u'actualizo mi informaci¾n profesional') def step_impl(context):     raise NotImplementedError(u'STEP: When actualizo mi informaci¾n profesional') 
+[ERROR]  
+[ERROR]  @then(u'la informaci¾n profesional deberÝa ser actualizada') def step_impl(context):     raise NotImplementedError(u'STEP: Then la informaci¾n profesional deberÝa ser actualizada') 
+[ERROR]  
+[ERROR]  @when(u'accedo al calendario') def step_impl(context):     raise NotImplementedError(u'STEP: When accedo al calendario') 
+[ERROR]   
+
+[ESCENARIOS FALLIDOS]
+   
+  - features/dashboard_estadisticas.feature:33  Usuario ve plazos proximos a vencer   
+  - features/dashboard_estadisticas.feature:40  Usuario ve plazos vencidos   
+  - features/dashboard_estadisticas.feature:67  Usuario puede filtrar estadÝsticas por perÝodo   
+  - features/dashboard_estadisticas.feature:74  Usuario puede exportar estadÝsticas   
+  - features/dashboard_estadisticas.feature:89  Usuario puede marcar notificaciones como leÝdas   
+  - features/exportacion.feature:9  Abogado puede exportar todos los plazos a PDF   
+  - features/exportacion.feature:17  Abogado puede exportar plazos a formato ICS   
+  - features/exportacion.feature:74  Abogado puede exportar a Excel   
+  - features/exportacion.feature:82  Abogado puede exportar a CSV   
+  - features/exportacion.feature:98  Abogado puede exportar con plantilla personalizada   
+  - features/exportacion.feature:106  Abogado puede exportar estadÝsticas   
+  - features/exportacion.feature:122  Abogado puede exportar con contrase±a   
+  - features/exportacion.feature:130  Abogado puede exportar plazos filtrados a PDF   
+  - features/exportacion.feature:138  Abogado puede exportar plazos por rango de fechas especÝfico   
+  - features/exportacion.feature:145  Abogado puede exportar plazos vencidos   
+  - features/exportacion.feature:152  Abogado puede exportar plazos proximos a vencer   
+  - features/exportacion.feature:159  Abogado puede configurar exportacion automßtica   
+  - features/exportacion.feature:164  Abogado puede exportar con plantilla personalizada   
+  - features/exportacion.feature:171  Abogado puede proteger exportacion con contrase±a especÝfica   
+  - features/exportacion.feature:179  Abogado puede exportar plazos por rango de fechas especÝfico   
+  - features/exportacion.feature:188  Abogado puede exportar plazos por tipo de documento   
+  - features/exportacion.feature:197  Abogado puede exportar plazos por estado especÝfico   
+  - features/exportacion.feature:206  Abogado puede exportar plazos seleccionados manualmente   
+  - features/exportacion.feature:215  Abogado puede exportar plazos con plantilla personalizada   
+  - features/exportacion.feature:224  Abogado puede exportar plazos vencidos ·nicamente   
+  - features/exportacion.feature:233  Abogado puede exportar plazos proximos a vencer   
+  - features/exportacion.feature:242  Abogado puede exportar plazos de un cliente especÝfico   
+  - features/exportacion.feature:251  Abogado puede exportar plazos en formato ICS con eventos   
+  - features/exportacion.feature:259  Abogado puede configurar exportacion automßtica   
+  - features/gestion_perfil.feature:24  Usuario puede actualizar su informaci¾n personal   
+  - features/gestion_perfil.feature:35  Usuario puede cambiar su contrase±a   
+  - features/gestion_perfil.feature:97  Usuario puede exportar sus datos   
+  - features/gestion_perfil.feature:116  Usuario puede cambiar su contrase±a con validaci¾n   
+  - features/gestion_perfil.feature:127  Usuario no puede cambiar contrase±a con datos incorrectos   
+  - features/gestion_perfil.feature:144  Usuario puede configurar idioma del sistema   
+  - features/gestion_perfil.feature:151  Usuario puede ver su historial de actividad   
+  - features/gestion_perfil.feature:158  Usuario puede configurar notificaciones   
+  - features/gestion_perfil.feature:173  Usuario puede actualizar su informaci¾n profesional   
+  - features/plazos_judiciales.feature:9  Abogado puede crear un plazo de contestacion   
+  - features/plazos_judiciales.feature:27  Abogado puede crear un plazo de demanda   
+  - features/plazos_judiciales.feature:45  Abogado puede crear un plazo de dÝas corridos   
+  - features/plazos_judiciales.feature:109  Sistema calcula automßticamente la fecha de vencimiento para dÝas corridos   
+  - features/plazos_judiciales.feature:123  Abogado puede cambiar el estado de un plazo   
+  - features/plazos_judiciales.feature:136  Abogado puede adjuntar un documento a un plazo   
+  - features/plazos_judiciales.feature:159  Abogado puede ver plazos proximos a vencer   
+  - features/plazos_judiciales.feature:228  Abogado puede ver formulario de creaci¾n de plazo   
+  - features/plazos_judiciales.feature:233  Abogado puede ver formulario de edici¾n de plazo   
+  - features/plazos_judiciales.feature:239  Abogado puede ver filtros de b·squeda   
+  - features/plazos_judiciales.feature:244  Abogado puede agregar observaciones a un plazo   
+  - features/plazos_judiciales.feature:256  Sistema calcula fecha de vencimiento especÝfica para dÝas hßbiles   
+  - features/plazos_judiciales.feature:262  Sistema calcula fecha de vencimiento especÝfica para dÝas corridos   
+  - features/plazos_judiciales.feature:268  Abogado puede cambiar estado de plazo a suspendido   
+  - features/plazos_judiciales.feature:274  Abogado puede cambiar estado de plazo a vencido   
+  - features/plazos_judiciales.feature:361  Abogado puede editar observaciones de un plazo   
+  - features/plazos_judiciales.feature:369  Abogado puede cambiar estado de plazo a suspendido  1 feature passed, 4 failed, 0 skipped 71 scenarios passed, 55 failed, 0 skipped 543 steps passed, 44 failed, 51 skipped, 18 undefined 
+[Tiempo total de ejecucion]
+
+================================================================================

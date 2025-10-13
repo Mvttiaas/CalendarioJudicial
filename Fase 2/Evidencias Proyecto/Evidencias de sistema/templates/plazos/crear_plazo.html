@@ -1,0 +1,459 @@
+{% extends 'base.html' %}
+
+{% block title %}Crear Plazo - Calendario Judicial{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <h1 class="mb-4 text-break">
+            <i class="bi bi-plus-circle"></i>
+            Crear Nuevo Plazo Judicial
+        </h1>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-8">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0 text-break">
+                    <i class="bi bi-file-text"></i>
+                    Información del Plazo
+                </h5>
+            </div>
+            <div class="card-body">
+                <form method="post" enctype="multipart/form-data" novalidate>
+                    {% csrf_token %}
+                    
+                    <div class="row">
+                        <div class="col-md-12 mb-3">
+                            <label for="{{ form.codigo_procedimiento.id_for_label }}" class="form-label">
+                                <i class="bi bi-book"></i> {{ form.codigo_procedimiento.label }}
+                            </label>
+                            {{ form.codigo_procedimiento }}
+                            {% if form.codigo_procedimiento.help_text %}
+                                <div class="form-text">{{ form.codigo_procedimiento.help_text }}</div>
+                            {% endif %}
+                            {% if form.codigo_procedimiento.errors %}
+                                <div class="invalid-feedback d-block">
+                                    {% for error in form.codigo_procedimiento.errors %}
+                                        {{ error }}
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="{{ form.tipo_documento.id_for_label }}" class="form-label">
+                                {{ form.tipo_documento.label }}
+                                <span class="text-danger">*</span>
+                            </label>
+                            {{ form.tipo_documento }}
+                            {% if form.tipo_documento.errors %}
+                                <div class="invalid-feedback d-block">
+                                    {% for error in form.tipo_documento.errors %}
+                                        {{ error }}
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                        
+                        <div class="col-md-6 mb-3">
+                            <label for="{{ form.procedimiento.id_for_label }}" class="form-label">
+                                {{ form.procedimiento.label }}
+                                <span class="text-danger">*</span>
+                            </label>
+                            {{ form.procedimiento }}
+                            {% if form.procedimiento.errors %}
+                                <div class="invalid-feedback d-block">
+                                    {% for error in form.procedimiento.errors %}
+                                        {{ error }}
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    
+                    <!-- Información del código seleccionado -->
+                    <div id="codigo-info"></div>
+                    
+                    <div class="row">
+                        <div class="col-md-4 mb-3">
+                            <label for="{{ form.dias_plazo.id_for_label }}" class="form-label">
+                                {{ form.dias_plazo.label }}
+                                <span class="text-danger">*</span>
+                            </label>
+                            {{ form.dias_plazo }}
+                            {% if form.dias_plazo.errors %}
+                                <div class="invalid-feedback d-block">
+                                    {% for error in form.dias_plazo.errors %}
+                                        {{ error }}
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                        
+                        <div class="col-md-4 mb-3">
+                            <label for="{{ form.tipo_dia.id_for_label }}" class="form-label">
+                                {{ form.tipo_dia.label }}
+                                <span class="text-danger">*</span>
+                            </label>
+                            {{ form.tipo_dia }}
+                            {% if form.tipo_dia.errors %}
+                                <div class="invalid-feedback d-block">
+                                    {% for error in form.tipo_dia.errors %}
+                                        {{ error }}
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                        
+                        <div class="col-md-4 mb-3">
+                            <label for="{{ form.fecha_inicio.id_for_label }}" class="form-label">
+                                {{ form.fecha_inicio.label }}
+                                <span class="text-danger">*</span>
+                            </label>
+                            {{ form.fecha_inicio }}
+                            {% if form.fecha_inicio.errors %}
+                                <div class="invalid-feedback d-block">
+                                    {% for error in form.fecha_inicio.errors %}
+                                        {{ error }}
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="{{ form.rol.id_for_label }}" class="form-label">
+                                {{ form.rol.label }}
+                                <span class="text-danger">*</span>
+                            </label>
+                            {{ form.rol }}
+                            {% if form.rol.errors %}
+                                <div class="invalid-feedback d-block">
+                                    {% for error in form.rol.errors %}
+                                        {{ error }}
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                            <div class="form-text">Serie de números para identificar el proceso</div>
+                        </div>
+                        
+                        <div class="col-md-6 mb-3">
+                            <label for="{{ form.rut_cliente.id_for_label }}" class="form-label">
+                                {{ form.rut_cliente.label }}
+                                <span class="text-danger">*</span>
+                            </label>
+                            {{ form.rut_cliente }}
+                            {% if form.rut_cliente.errors %}
+                                <div class="invalid-feedback d-block">
+                                    {% for error in form.rut_cliente.errors %}
+                                        {{ error }}
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                            <div class="form-text">Formato: 12345678-9 o 12.345.678-9</div>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="{{ form.clave_cliente.id_for_label }}" class="form-label">
+                                {{ form.clave_cliente.label }}
+                                <span class="text-danger">*</span>
+                            </label>
+                            {{ form.clave_cliente }}
+                            {% if form.clave_cliente.errors %}
+                                <div class="invalid-feedback d-block">
+                                    {% for error in form.clave_cliente.errors %}
+                                        {{ error }}
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                            <div class="form-text">Clave para identificar al cliente</div>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="{{ form.estado.id_for_label }}" class="form-label">
+                                {{ form.estado.label }}
+                                <span class="text-danger">*</span>
+                            </label>
+                            {{ form.estado }}
+                            {% if form.estado.errors %}
+                                <div class="invalid-feedback d-block">
+                                    {% for error in form.estado.errors %}
+                                        {{ error }}
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="{{ form.observaciones.id_for_label }}" class="form-label">
+                            {{ form.observaciones.label }}
+                            <small class="text-muted">(opcional, máximo 200 caracteres)</small>
+                        </label>
+                        {{ form.observaciones }}
+                        <div class="form-text">
+                            <small class="text-muted">
+                                <span id="char-count">0</span>/200 caracteres
+                            </small>
+                        </div>
+                        {% if form.observaciones.errors %}
+                            <div class="invalid-feedback d-block">
+                                {% for error in form.observaciones.errors %}
+                                    {{ error }}
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="{{ form.documento_adjunto.id_for_label }}" class="form-label">
+                            {{ form.documento_adjunto.label }}
+                            <small class="text-muted">(opcional)</small>
+                        </label>
+                        {{ form.documento_adjunto }}
+                        <div class="form-text">
+                            <small class="text-muted">
+                                <i class="bi bi-info-circle"></i>
+                                Formatos permitidos: PDF, DOC, DOCX, TXT, JPG, JPEG, PNG (máximo 10MB)
+                            </small>
+                        </div>
+                        {% if form.documento_adjunto.errors %}
+                            <div class="invalid-feedback d-block">
+                                {% for error in form.documento_adjunto.errors %}
+                                    {{ error }}
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+                    
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                        <a href="{% url 'calendario' %}" class="btn btn-outline-secondary me-md-2">
+                            <i class="bi bi-arrow-left"></i>
+                            Cancelar
+                        </a>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="bi bi-check-circle"></i>
+                            Crear Plazo
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-lg-4">
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    // Validación en tiempo real del RUT
+    document.addEventListener('DOMContentLoaded', function() {
+        const rolInput = document.getElementById('{{ form.rol.id_for_label }}');
+        const rutClienteInput = document.getElementById('{{ form.rut_cliente.id_for_label }}');
+        // Validación del ROL (solo números)
+        rolInput.addEventListener('input', function(e) {
+            let value = e.target.value.replace(/[^0-9]/g, '');
+            e.target.value = value;
+            
+            if (value.length >= 3) {
+                rolInput.classList.add('is-valid');
+                rolInput.classList.remove('is-invalid');
+            } else {
+                rolInput.classList.remove('is-valid');
+                rolInput.classList.add('is-invalid');
+            }
+        });
+        
+        // Validación del RUT del cliente
+        const rutFeedback = document.createElement('div');
+        rutFeedback.className = 'form-text';
+        rutClienteInput.parentNode.appendChild(rutFeedback);
+        
+        rutClienteInput.addEventListener('input', function(e) {
+            let rut = e.target.value.replace(/[^0-9kK]/g, '');
+            
+            // Formatear mientras se escribe
+            if (rut.length > 1) {
+                let rutFormateado = rut.slice(0, -1).replace(/\B(?=(\d{3})+(?!\d))/g, '.') + '-' + rut.slice(-1);
+                e.target.value = rutFormateado;
+            }
+            
+            // Validar RUT en tiempo real
+            validateRut(e.target.value);
+        });
+        
+        function validateRut(rut) {
+            if (!rut || rut.length < 8) {
+                rutFeedback.textContent = 'Formato: 12345678-9 o 12.345.678-9';
+                rutFeedback.className = 'form-text';
+                rutClienteInput.classList.remove('is-valid', 'is-invalid');
+                return;
+            }
+            
+            // Validar formato básico
+            const rutPattern = /^\d{1,2}\.?\d{3}\.?\d{3}-[\dkK]$/;
+            if (!rutPattern.test(rut)) {
+                rutFeedback.textContent = 'Formato inválido. Use: 12.345.678-9';
+                rutFeedback.className = 'form-text text-danger';
+                rutClienteInput.classList.remove('is-valid');
+                rutClienteInput.classList.add('is-invalid');
+                return;
+            }
+            
+            // Validar dígito verificador
+            if (validateRutDigit(rut)) {
+                rutFeedback.textContent = '✓ RUT válido';
+                rutFeedback.className = 'form-text text-success';
+                rutClienteInput.classList.remove('is-invalid');
+                rutClienteInput.classList.add('is-valid');
+            } else {
+                rutFeedback.textContent = '✗ RUT inválido - Dígito verificador incorrecto';
+                rutFeedback.className = 'form-text text-danger';
+                rutClienteInput.classList.remove('is-valid');
+                rutClienteInput.classList.add('is-invalid');
+            }
+        }
+        
+        function validateRutDigit(rut) {
+            // Limpiar RUT
+            const rutLimpio = rut.replace(/\./g, '').replace('-', '').toUpperCase();
+            
+            if (rutLimpio.length < 8) return false;
+            
+            const numero = rutLimpio.slice(0, -1);
+            const verificador = rutLimpio.slice(-1);
+            
+            // Calcular dígito verificador
+            let suma = 0;
+            let multiplicador = 2;
+            
+            for (let i = numero.length - 1; i >= 0; i--) {
+                suma += parseInt(numero[i]) * multiplicador;
+                multiplicador = multiplicador === 7 ? 2 : multiplicador + 1;
+            }
+            
+            const resto = suma % 11;
+            let dvCalculado = 11 - resto;
+            
+            if (dvCalculado === 11) dvCalculado = '0';
+            else if (dvCalculado === 10) dvCalculado = 'K';
+            else dvCalculado = dvCalculado.toString();
+            
+            return verificador === dvCalculado;
+        }
+    });
+    
+    // Contador de caracteres para observaciones
+    const observacionesField = document.getElementById('{{ form.observaciones.id_for_label }}');
+    const charCount = document.getElementById('char-count');
+    
+    observacionesField.addEventListener('input', function(e) {
+        const length = e.target.value.length;
+        charCount.textContent = length;
+        
+        // Cambiar color según la longitud
+        if (length > 180) {
+            charCount.style.color = '#dc3545'; // Rojo
+        } else if (length > 150) {
+            charCount.style.color = '#ffc107'; // Amarillo
+        } else {
+            charCount.style.color = '#6c757d'; // Gris
+        }
+    });
+    
+    // Mostrar fecha de vencimiento calculada
+    function calcularFechaVencimiento() {
+        const fechaInicio = document.getElementById('{{ form.fecha_inicio.id_for_label }}').value;
+        const diasPlazo = document.getElementById('{{ form.dias_plazo.id_for_label }}').value;
+        const tipoDia = document.getElementById('{{ form.tipo_dia.id_for_label }}').value;
+        
+        if (fechaInicio && diasPlazo && tipoDia) {
+            // Aquí podrías hacer una llamada AJAX para calcular la fecha
+            // Por ahora, solo mostramos un mensaje
+            console.log('Calculando fecha de vencimiento...');
+        }
+    }
+    
+    // Agregar event listeners
+    document.getElementById('{{ form.fecha_inicio.id_for_label }}').addEventListener('change', calcularFechaVencimiento);
+    document.getElementById('{{ form.dias_plazo.id_for_label }}').addEventListener('input', calcularFechaVencimiento);
+    document.getElementById('{{ form.tipo_dia.id_for_label }}').addEventListener('change', calcularFechaVencimiento);
+    
+    // Datos de códigos de procedimiento (se cargarán dinámicamente)
+    let codigosProcedimiento = {};
+    
+    // Cargar datos de códigos de procedimiento
+    function cargarCodigosProcedimiento() {
+        fetch('/api/codigos-procedimiento/')
+            .then(response => response.json())
+            .then(data => {
+                codigosProcedimiento = data;
+            })
+            .catch(error => {
+                console.error('Error al cargar códigos de procedimiento:', error);
+            });
+    }
+    
+    // Llenar campos automáticamente cuando se selecciona un código
+    function llenarCamposAutomaticamente(codigoId) {
+        if (codigosProcedimiento[codigoId]) {
+            const codigo = codigosProcedimiento[codigoId];
+            
+            // Llenar campos automáticamente
+            document.getElementById('{{ form.tipo_documento.id_for_label }}').value = codigo.tipo_documento;
+            document.getElementById('{{ form.procedimiento.id_for_label }}').value = codigo.tipo_procedimiento;
+            document.getElementById('{{ form.dias_plazo.id_for_label }}').value = codigo.dias_plazo;
+            document.getElementById('{{ form.tipo_dia.id_for_label }}').value = codigo.tipo_dia;
+            
+            // Mostrar información del código seleccionado
+            mostrarInfoCodigo(codigo);
+        }
+    }
+    
+    // Mostrar información del código seleccionado
+    function mostrarInfoCodigo(codigo) {
+        const infoDiv = document.getElementById('codigo-info');
+        if (infoDiv) {
+            infoDiv.innerHTML = `
+                <div class="alert alert-info">
+                    <h6><i class="bi bi-info-circle"></i> Información del Código:</h6>
+                    <p><strong>Artículo:</strong> ${codigo.articulo_cpc}</p>
+                    <p><strong>Descripción:</strong> ${codigo.descripcion}</p>
+                    ${codigo.observaciones ? `<p><strong>Observaciones:</strong> ${codigo.observaciones}</p>` : ''}
+                </div>
+            `;
+        }
+    }
+    
+    // Cargar códigos de procedimiento al inicio
+    cargarCodigosProcedimiento();
+    
+    // Event listener para código de procedimiento
+    const codigoSelect = document.getElementById('{{ form.codigo_procedimiento.id_for_label }}');
+    if (codigoSelect) {
+        codigoSelect.addEventListener('change', function(e) {
+            if (e.target.value) {
+                llenarCamposAutomaticamente(e.target.value);
+            } else {
+                // Limpiar información si no se selecciona código
+                const infoDiv = document.getElementById('codigo-info');
+                if (infoDiv) {
+                    infoDiv.innerHTML = '';
+                }
+            }
+        });
+    }
+</script>
+{% endblock %}

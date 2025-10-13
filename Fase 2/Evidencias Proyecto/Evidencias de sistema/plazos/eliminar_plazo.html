@@ -1,0 +1,179 @@
+{% extends 'base.html' %}
+
+{% block title %}Eliminar Plazo - Calendario Judicial{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <h1 class="mb-4">
+            <i class="bi bi-trash"></i>
+            Eliminar Plazo Judicial
+        </h1>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-8">
+        <div class="alert alert-danger">
+            <h4 class="alert-heading">
+                <i class="bi bi-exclamation-triangle"></i>
+                ¡Atención!
+            </h4>
+            <p>Está a punto de eliminar permanentemente el siguiente plazo judicial:</p>
+        </div>
+        
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">
+                    <i class="bi bi-file-text"></i>
+                    Información del Plazo a Eliminar
+                </h5>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <table class="table table-borderless">
+                            <tr>
+                                <td><strong>ID:</strong></td>
+                                <td>#{{ plazo.id }}</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Tipo de Documento:</strong></td>
+                                <td>{{ plazo.get_tipo_documento_display }}</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Procedimiento:</strong></td>
+                                <td><span class="badge bg-info">{{ plazo.get_procedimiento_display }}</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Rol:</strong></td>
+                                <td><code>{{ plazo.rol }}</code></td>
+                            </tr>
+                            <tr>
+                                <td><strong>RUT del Cliente:</strong></td>
+                                <td><code>{{ plazo.rut_cliente }}</code></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="col-md-6">
+                        <table class="table table-borderless">
+                            <tr>
+                                <td><strong>Fecha de Inicio:</strong></td>
+                                <td>{{ plazo.fecha_inicio|date:"d/m/Y" }}</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Fecha de Vencimiento:</strong></td>
+                                <td>{{ plazo.fecha_vencimiento|date:"d/m/Y" }}</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Estado:</strong></td>
+                                <td>
+                                    <span class="badge estado-badge bg-{% if plazo.estado == 'vencido' %}danger{% elif plazo.estado == 'corriendo' %}info{% elif plazo.estado == 'esperando_proveido' %}warning{% elif plazo.estado == 'suspendido' %}secondary{% else %}primary{% endif %}">
+                                        {{ plazo.get_estado_display }}
+                                    </span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>Clave del Cliente:</strong></td>
+                                <td><code>{{ plazo.clave_cliente }}</code></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                
+                {% if plazo.observaciones %}
+                <div class="mt-3">
+                    <strong>Observaciones:</strong>
+                    <p class="text-muted">{{ plazo.observaciones }}</p>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+        
+        <div class="alert alert-warning mt-3">
+            <h6><i class="bi bi-info-circle"></i> Información Importante</h6>
+            <ul class="mb-0">
+                <li>Esta acción <strong>no se puede deshacer</strong>.</li>
+                <li>Se eliminará permanentemente toda la información del plazo.</li>
+                <li>Si solo desea cambiar el estado, considere editarlo en lugar de eliminarlo.</li>
+            </ul>
+        </div>
+        
+        <form method="post" class="mt-4">
+            {% csrf_token %}
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                <a href="{% url 'detalle_plazo' plazo.id %}" class="btn btn-outline-secondary me-md-2">
+                    <i class="bi bi-arrow-left"></i>
+                    Cancelar
+                </a>
+                <button type="submit" class="btn btn-danger" onclick="return confirmarEliminacion('¿Está completamente seguro de que desea eliminar este plazo? Esta acción no se puede deshacer.')">
+                    <i class="bi bi-trash"></i>
+                    Eliminar Definitivamente
+                </button>
+            </div>
+        </form>
+    </div>
+    
+    <div class="col-lg-4">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">
+                    <i class="bi bi-shield-exclamation"></i>
+                    Alternativas
+                </h5>
+            </div>
+            <div class="card-body">
+                <p>Antes de eliminar, considere estas alternativas:</p>
+                
+                <div class="d-grid gap-2">
+                    <a href="{% url 'editar_plazo' plazo.id %}" class="btn btn-warning">
+                        <i class="bi bi-pencil"></i>
+                        Editar Plazo
+                    </a>
+                    
+                    {% if plazo.estado != 'suspendido' %}
+                    <a href="{% url 'editar_plazo' plazo.id %}" class="btn btn-outline-warning">
+                        <i class="bi bi-pause-circle"></i>
+                        Suspender Plazo
+                    </a>
+                    {% endif %}
+                    
+                    <a href="{% url 'calendario' %}" class="btn btn-outline-primary">
+                        <i class="bi bi-calendar3"></i>
+                        Ver Calendario
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card mt-3">
+            <div class="card-header">
+                <h5 class="mb-0">
+                    <i class="bi bi-clock-history"></i>
+                    Historial
+                </h5>
+            </div>
+            <div class="card-body">
+                <table class="table table-borderless table-sm">
+                    <tr>
+                        <td><strong>Creado:</strong></td>
+                        <td>{{ plazo.created_at|date:"d/m/Y H:i" }}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Modificado:</strong></td>
+                        <td>{{ plazo.updated_at|date:"d/m/Y H:i" }}</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    function confirmarEliminacion(mensaje) {
+        return confirm(mensaje || '¿Está seguro de que desea eliminar este plazo?');
+    }
+</script>
+{% endblock %}

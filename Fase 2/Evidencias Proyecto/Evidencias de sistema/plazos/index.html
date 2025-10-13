@@ -1,0 +1,321 @@
+{% extends 'base.html' %}
+
+{% block title %}Inicio - Calendario Judicial{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <h1 class="mb-4">
+            <i class="bi bi-house-door"></i>
+            Dashboard - Calendario Judicial
+        </h1>
+    </div>
+</div>
+
+<!-- Bienvenida para usuarios nuevos -->
+{% if es_usuario_nuevo %}
+<div class="row mb-4">
+    <div class="col-12">
+        <div class="card border-0 shadow-sm" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+            <div class="card-body text-white text-center py-5">
+                <div class="mb-4">
+                    <i class="bi bi-calendar-check" style="font-size: 4rem; opacity: 0.8;"></i>
+                </div>
+                <h2 class="card-title mb-3">¡Bienvenido al Calendario Judicial!</h2>
+                <p class="card-text mb-4 fs-5" style="opacity: 0.9;">
+                    Tu sistema de gestión de plazos judiciales está listo para usar.
+                    <br>Crea tu primer plazo y comienza a organizar tu trabajo legal.
+                </p>
+                <div class="d-flex justify-content-center gap-3 flex-wrap">
+                    <a href="{% url 'crear_plazo' %}" class="btn btn-light btn-lg px-4">
+                        <i class="bi bi-plus-circle me-2"></i>
+                        Crear Primer Plazo
+                    </a>
+                    <a href="{% url 'calendario' %}" class="btn btn-outline-light btn-lg px-4">
+                        <i class="bi bi-calendar3 me-2"></i>
+                        Ver Calendario
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Características del sistema -->
+<div class="row mb-4">
+    <div class="col-md-4">
+        <div class="card h-100 border-0 shadow-sm">
+            <div class="card-body text-center">
+                <i class="bi bi-book text-primary mb-3" style="font-size: 3rem;"></i>
+                <h5 class="card-title">Códigos CPC Automáticos</h5>
+                <p class="card-text text-muted">
+                    Selecciona un código del Código Procesal Civil y los campos se llenan automáticamente.
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card h-100 border-0 shadow-sm">
+            <div class="card-body text-center">
+                <i class="bi bi-calculator text-success mb-3" style="font-size: 3rem;"></i>
+                <h5 class="card-title">Cálculo Automático</h5>
+                <p class="card-text text-muted">
+                    Las fechas de vencimiento se calculan automáticamente considerando días hábiles y feriados.
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card h-100 border-0 shadow-sm">
+            <div class="card-body text-center">
+                <i class="bi bi-shield-check text-warning mb-3" style="font-size: 3rem;"></i>
+                <h5 class="card-title">Validación de RUT</h5>
+                <p class="card-text text-muted">
+                    Validación en tiempo real de RUTs chilenos con verificación de dígito verificador.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+
+<!-- Estadísticas (solo para usuarios con plazos) -->
+{% if not es_usuario_nuevo %}
+<div class="row mb-4">
+    <div class="col-md-3">
+        <div class="card card-stat text-center shadow-sm border-0">
+            <div class="card-body">
+                <div class="d-flex align-items-center justify-content-center mb-2">
+                    <i class="bi bi-list-ul text-primary me-2" style="font-size: 2rem;"></i>
+                    <h3 class="card-title mb-0 text-primary">{{ total_plazos }}</h3>
+                </div>
+                <p class="card-text text-muted mb-0">Total Plazos</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card card-stat text-center shadow-sm border-0">
+            <div class="card-body">
+                <div class="d-flex align-items-center justify-content-center mb-2">
+                    <i class="bi bi-play-circle text-info me-2" style="font-size: 2rem;"></i>
+                    <h3 class="card-title mb-0 text-info">{{ plazos_corriendo }}</h3>
+                </div>
+                <p class="card-text text-muted mb-0">En Curso</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card card-stat text-center shadow-sm border-0">
+            <div class="card-body">
+                <div class="d-flex align-items-center justify-content-center mb-2">
+                    <i class="bi bi-exclamation-triangle text-warning me-2" style="font-size: 2rem;"></i>
+                    <h3 class="card-title mb-0 text-warning">{{ plazos_urgentes }}</h3>
+                </div>
+                <p class="card-text text-muted mb-0">Urgentes</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card card-stat text-center shadow-sm border-0">
+            <div class="card-body">
+                <div class="d-flex align-items-center justify-content-center mb-2">
+                    <i class="bi bi-x-circle text-danger me-2" style="font-size: 2rem;"></i>
+                    <h3 class="card-title mb-0 text-danger">{{ plazos_vencidos }}</h3>
+                </div>
+                <p class="card-text text-muted mb-0">Vencidos</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+
+<!-- Acciones rápidas -->
+<div class="row mb-4">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">
+                    <i class="bi bi-lightning"></i>
+                    Acciones Rápidas
+                </h5>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-3 mb-2">
+                        <a href="{% url 'crear_plazo' %}" class="btn btn-primary w-100">
+                            <i class="bi bi-plus-circle"></i>
+                            Nuevo Plazo
+                        </a>
+                    </div>
+                    <div class="col-md-3 mb-2">
+                        <a href="{% url 'calendario' %}" class="btn btn-outline-primary w-100">
+                            <i class="bi bi-calendar3"></i>
+                            Ver Calendario
+                        </a>
+                    </div>
+                    <div class="col-md-3 mb-2">
+                        <a href="{% url 'exportar_pdf' %}" class="btn btn-outline-success w-100">
+                            <i class="bi bi-file-pdf"></i>
+                            Exportar PDF
+                        </a>
+                    </div>
+                    <div class="col-md-3 mb-2">
+                        <a href="{% url 'exportar_ics' %}" class="btn btn-outline-info w-100">
+                            <i class="bi bi-calendar-event"></i>
+                            Exportar iCal
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Plazos próximos a vencer -->
+{% if plazos_proximos %}
+<div class="row mb-4">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">
+                    <i class="bi bi-clock-history text-warning"></i>
+                    Próximos a Vencer (7 días)
+                </h5>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Documento</th>
+                                <th>Procedimiento</th>
+                                <th>Rol</th>
+                                <th>RUT Cliente</th>
+                                <th>Fecha Vencimiento</th>
+                                <th>Días Restantes</th>
+                                <th>Estado</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for plazo in plazos_proximos %}
+                            <tr class="{% if plazo.estado == 'vencido' %}vencido{% elif plazo.dias_restantes <= 3 %}urgente{% endif %}">
+                                <td>{{ plazo.get_tipo_documento_display }}</td>
+                                <td>{{ plazo.get_procedimiento_display }}</td>
+                                <td>{{ plazo.rol }}</td>
+                                <td>{{ plazo.rut_cliente }}</td>
+                                <td>{{ plazo.fecha_vencimiento|date:"d/m/Y" }}</td>
+                                <td>
+                                    {% if plazo.dias_restantes %}
+                                        <span class="badge {% if plazo.dias_restantes <= 0 %}bg-danger{% elif plazo.dias_restantes <= 3 %}bg-warning{% else %}bg-success{% endif %}">
+                                            {{ plazo.dias_restantes }} días
+                                        </span>
+                                    {% else %}
+                                        <span class="badge bg-secondary">N/A</span>
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    <span class="badge estado-badge bg-{% if plazo.estado == 'vencido' %}danger{% elif plazo.estado == 'corriendo' %}info{% elif plazo.estado == 'urgente' %}warning{% else %}secondary{% endif %}">
+                                        {{ plazo.get_estado_display }}
+                                    </span>
+                                </td>
+                                <td>
+                                    <div class="btn-group btn-group-sm">
+                                        <a href="{% url 'detalle_plazo' plazo.id %}" class="btn btn-outline-primary btn-sm">
+                                            <i class="bi bi-eye"></i>
+                                        </a>
+                                        <a href="{% url 'editar_plazo' plazo.id %}" class="btn btn-outline-warning btn-sm">
+                                            <i class="bi bi-pencil"></i>
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+
+<!-- Plazos recientes -->
+{% if plazos_recientes %}
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">
+                    <i class="bi bi-clock"></i>
+                    Plazos Recientes
+                </h5>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Documento</th>
+                                <th>Procedimiento</th>
+                                <th>Rol</th>
+                                <th>RUT Cliente</th>
+                                <th>Fecha Creación</th>
+                                <th>Fecha Vencimiento</th>
+                                <th>Estado</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for plazo in plazos_recientes %}
+                            <tr>
+                                <td>{{ plazo.get_tipo_documento_display }}</td>
+                                <td>{{ plazo.get_procedimiento_display }}</td>
+                                <td>{{ plazo.rol }}</td>
+                                <td>{{ plazo.rut_cliente }}</td>
+                                <td>{{ plazo.created_at|date:"d/m/Y H:i" }}</td>
+                                <td>{{ plazo.fecha_vencimiento|date:"d/m/Y" }}</td>
+                                <td>
+                                    <span class="badge estado-badge bg-{% if plazo.estado == 'vencido' %}danger{% elif plazo.estado == 'corriendo' %}info{% elif plazo.estado == 'urgente' %}warning{% else %}secondary{% endif %}">
+                                        {{ plazo.get_estado_display }}
+                                    </span>
+                                </td>
+                                <td>
+                                    <div class="btn-group btn-group-sm">
+                                        <a href="{% url 'detalle_plazo' plazo.id %}" class="btn btn-outline-primary btn-sm">
+                                            <i class="bi bi-eye"></i>
+                                        </a>
+                                        <a href="{% url 'editar_plazo' plazo.id %}" class="btn btn-outline-warning btn-sm">
+                                            <i class="bi bi-pencil"></i>
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+
+{% if not plazos_proximos and not plazos_recientes %}
+<div class="row">
+    <div class="col-12">
+        <div class="card text-center">
+            <div class="card-body">
+                <i class="bi bi-calendar-x text-muted" style="font-size: 3rem;"></i>
+                <h5 class="card-title mt-3">No hay plazos registrados</h5>
+                <p class="card-text text-muted">Comience creando su primer plazo judicial.</p>
+                <a href="{% url 'crear_plazo' %}" class="btn btn-primary">
+                    <i class="bi bi-plus-circle"></i>
+                    Crear Primer Plazo
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+{% endblock %}
